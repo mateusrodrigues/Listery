@@ -13,7 +13,7 @@ namespace Listery.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201607192346125_Initial"; }
+            get { return "201607201406258_Initial"; }
         }
         
         string IMigrationMetadata.Source

@@ -51,10 +51,10 @@ namespace Listery.Data.Migrations
                         Username = c.String(),
                         Password = c.String(),
                         IsActive = c.Boolean(nullable: false),
-                        HouseholdID = c.Guid(nullable: false),
+                        HouseholdID = c.Guid(nullable: true),
                     })
                 .PrimaryKey(t => t.Subject)
-                .ForeignKey("dbo.Households", t => t.HouseholdID, cascadeDelete: true)
+                .ForeignKey("dbo.Households", t => t.HouseholdID)
                 .Index(t => t.HouseholdID);
             
             CreateTable(

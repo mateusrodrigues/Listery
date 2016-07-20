@@ -48,7 +48,8 @@ namespace Listery.Repository.Persistence.Repositories
 
         public User GetWithClaimsForIdentity(string username, string password)
         {
-            var user = _context.Users.FirstOrDefault(m => m.Username.Equals(username, StringComparison.CurrentCultureIgnoreCase));
+            var user = _context.Users.Include(m => m.Claims)
+                .FirstOrDefault(m => m.Username.Equals(username, StringComparison.CurrentCultureIgnoreCase));
 
             if (user != null)
             {

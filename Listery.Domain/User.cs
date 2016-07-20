@@ -12,7 +12,7 @@ namespace Listery.Domain
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
-        public Guid HouseholdID { get; set; }
+        public Guid? HouseholdID { get; set; }
 
         /* Navigation Properties */
         public virtual ICollection<UserClaim> Claims { get; set; }
