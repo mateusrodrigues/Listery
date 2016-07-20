@@ -42,6 +42,10 @@ namespace Listery.Data
                 .HasForeignKey(c => c.Subject)
                 .WillCascadeOnDelete(true);
 
+            // Definition of 'UserClaimID' as a primary key on UserClaim entity
+            modelBuilder.Entity<UserClaim>().HasKey(t => t.UserClaimID);
+            modelBuilder.Entity<UserClaim>().Property(t => t.UserClaimID).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
             base.OnModelCreating(modelBuilder);
         }
     }

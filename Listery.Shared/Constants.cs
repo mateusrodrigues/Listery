@@ -20,7 +20,7 @@ namespace Listery.Shared
 
                 if (environment.Equals("Development"))
                 {
-                    return @"https://localhost:44360/";
+                    return @"https://localhost:44337/";
                 }
                 else if (environment.Equals("Staging"))
                 {

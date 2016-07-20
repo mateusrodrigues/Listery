@@ -51,7 +51,7 @@ namespace Listery.Data.Migrations
                         Username = c.String(),
                         Password = c.String(),
                         IsActive = c.Boolean(nullable: false),
-                        HouseholdID = c.Guid(nullable: true),
+                        HouseholdID = c.Guid(),
                     })
                 .PrimaryKey(t => t.Subject)
                 .ForeignKey("dbo.Households", t => t.HouseholdID)

@@ -35,6 +35,23 @@ namespace Listery.Repository.Persistence.Repositories
             return _context.Users.ToList();
         }
 
+        public User FindByEmail(string email)
+        {
+            var claim = _context.UserClaims.FirstOrDefault(m => m.ClaimType.Equals("email")
+                    && m.ClaimValue.Equals(email, StringComparison.CurrentCultureIgnoreCase));
+
+            var user = (claim != null) ? _context.Users.Find(claim.Subject) : null;
+
+            return user;
+        }
+
+        public User FindByUsername(string username)
+        {
+            var user = _context.Users.FirstOrDefault(m => m.Username.Equals(username, StringComparison.CurrentCultureIgnoreCase));
+
+            return user;
+        }
+
         public User Get(Guid id)
         {
             return _context.Users.Find(id);

@@ -11,5 +11,7 @@ namespace Listery.Repository.Core.Repositories
     {
         User GetWithClaims(Guid id);
         User GetWithClaimsForIdentity(string username, string password);
+        User FindByUsername(string username);
+        User FindByEmail(string email);
     }
 }
