@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Listery.Repository.Core
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork : IDisposable
     {
         IUserRepository Users { get; }
         int Complete();

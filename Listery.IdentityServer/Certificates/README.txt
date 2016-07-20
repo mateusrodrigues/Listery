@@ -1,0 +1,1 @@
+﻿Insert your certificate for the signing of the token and cofigure the StartUp.cs file accordingly.

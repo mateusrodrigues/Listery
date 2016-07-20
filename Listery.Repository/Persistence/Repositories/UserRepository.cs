@@ -1,4 +1,5 @@
-﻿using Listery.Data;
+﻿using BCrypt.Net;
+using Listery.Data;
 using Listery.Repository.Core.Repositories;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,25 @@ namespace Listery.Repository.Persistence.Repositories
         public User Get(Guid id)
         {
             return _context.Users.Find(id);
+        }
+
+        public User GetWithClaims(Guid id)
+        {
+            return _context.Users.Include(m => m.Claims)
+                .FirstOrDefault(m => m.Subject.Equals(id));
+        }
+
+        public User GetWithClaimsForIdentity(string username, string password)
+        {
+            var user = _context.Users.FirstOrDefault(m => m.Username.Equals(username, StringComparison.CurrentCultureIgnoreCase));
+
+            if (user != null)
+            {
+                if (!BCrypt.Net.BCrypt.Verify(password, user.Password))
+                    user = null;
+            }
+
+            return user;
         }
 
         public void Update(User entity)

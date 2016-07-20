@@ -14,9 +14,9 @@ namespace Listery.Repository.Persistence
     {
         private readonly ListeryDbContext _context;
 
-        public UnitOfWork(ListeryDbContext context)
+        public UnitOfWork()
         {
-            _context = context;
+            _context = new ListeryDbContext();
 
             Users = new UserRepository(_context);
         }
