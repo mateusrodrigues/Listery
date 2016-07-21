@@ -7,10 +7,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Web.Http;
 
 namespace Listery.API.Controllers
 {
+    [Authorize]
     public class UsersController : ApiController
     {
         // GET: /User/{id}
@@ -18,6 +20,11 @@ namespace Listery.API.Controllers
         [Route("api/user/{id:guid}")]
         public IHttpActionResult Get(Guid id, bool withClaims = false)
         {
+            var sub = Guid.Parse((User.Identity as ClaimsIdentity).FindFirst("sub").Value);
+
+            if (!sub.Equals(id))
+                return StatusCode(HttpStatusCode.Forbidden);
+
             using (var db = new UnitOfWork())
             {
                 var user = (withClaims) ? db.Users.GetWithClaims(id) : db.Users.Get(id);
@@ -30,6 +37,7 @@ namespace Listery.API.Controllers
 
         // POST: /Users
         [HttpPost]
+        [AllowAnonymous]
         public IHttpActionResult Post(AddUserViewModel model)
         {
             if (ModelState.IsValid)
@@ -64,7 +72,13 @@ namespace Listery.API.Controllers
                 }
             }
 
-            return BadRequest("Model posted is not valid.");
+            string result = "";
+            foreach (var error in ModelState.Values.FirstOrDefault().Errors)
+            {
+                result += $"{error.ErrorMessage}. ";
+            }
+
+            return BadRequest(result);
         }
     }
 }

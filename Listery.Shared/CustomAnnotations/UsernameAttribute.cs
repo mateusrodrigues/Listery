@@ -12,8 +12,11 @@ namespace Listery.Shared.CustomAnnotations
     {
         public override bool IsValid(object value)
         {
-            // TODO Find way to validate username regular expression
-            return true;
+            var username = value as string;
+            // Allow only alpha-numeric characters, hyphens, periods and underscores
+            string pattern = @"^[0-9A-Za-z][-._]*[0-9A-Za-z]$";
+
+            return Regex.IsMatch(username, pattern);
         }
     }
 }
