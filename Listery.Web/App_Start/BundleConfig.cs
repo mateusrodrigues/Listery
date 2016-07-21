@@ -26,6 +26,14 @@ namespace Listery.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            // AdminLTE bundles
+            bundles.Add(new StyleBundle("~/Styles/AdminLTE").Include(
+                    "~/Content/AdminLTE.min.css",
+                    "~/Content/skin-green.min.css"));
+
+            bundles.Add(new ScriptBundle("~/Scripts/AdminLTE").Include(
+                "~/Scripts/app.min.js"));
         }
     }
 }
