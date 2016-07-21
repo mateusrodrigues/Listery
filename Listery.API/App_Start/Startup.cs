@@ -21,7 +21,7 @@ namespace Listery.API.App_Start
                 new IdentityServerBearerTokenAuthenticationOptions
                 {
                     Authority = Constants.STS,
-                    RequiredScopes = new[] { "apiaccess" }
+                    RequiredScopes = new[] { "api_access" }
                 });
         }
     }

@@ -40,7 +40,7 @@ namespace Listery.IdentityServer
                             AuthenticationOptions = new AuthenticationOptions()
                             {
                                 EnableSignOutPrompt = true,
-                                EnablePostSignOutAutoRedirect = false
+                                EnablePostSignOutAutoRedirect = true
                             }
                         };
 

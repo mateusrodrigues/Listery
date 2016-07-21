@@ -12,6 +12,14 @@ namespace Listery.IdentityServer.Configuration
         {
             return new List<Scope>
             {
+                new Scope
+                {
+                    Name = "api_access",
+                    DisplayName = "API Access",
+                    Description = "Allows the client to call the API",
+                    Type = ScopeType.Resource
+                },
+
                 StandardScopes.OpenId,
                 StandardScopes.EmailAlwaysInclude,
                 StandardScopes.ProfileAlwaysInclude,
